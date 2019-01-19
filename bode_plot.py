@@ -19,6 +19,7 @@ os.chdir(folder)
 for file in os.listdir(os.getcwd()):
     if not file.endswith(".txt"):
         continue
+    print("Processing: {}...".format(file), end=" ", flush=True)
     with open(file, "r") as fi:
         # First three lines are meta-data
         lines = fi.readlines()[3:]
@@ -31,3 +32,4 @@ for file in os.listdir(os.getcwd()):
         data["phase"].append(phase)
     d = pandas.DataFrame(data)
     d.to_csv("{}_bode.csv".format(file.split(".")[0]))
+    print("Done.")
